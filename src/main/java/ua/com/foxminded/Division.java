@@ -11,7 +11,7 @@ public class Division {
     private List<String> viewResult;
     private StringBuilder buildViewResult;
 
-    public void makeDivision(int dividend, int divisor){
+    public void makeDivision(int dividend, int divisor) {
         this.divisor = divisor;
         this.dividend = String.valueOf(dividend);
         digitsDividend = this.dividend.split("");
@@ -39,8 +39,6 @@ public class Division {
         viewResult.add(2, buildViewResult.toString());
         viewResult.remove(viewResult.get(3));
         viewResult.forEach(System.out::println);
-        System.out.println(Integer.parseInt(buildQuotient.toString()));
-        
     }
 
     private void divine() {
@@ -49,29 +47,29 @@ public class Division {
         for (int i = 0; i < digitsDividend.length; i++) {
             subDividendToString.append(digitsDividend[i]);
             subDividend = Integer.parseInt(subDividendToString.toString());
-            if(subDividend >= divisor){
+            if (subDividend >= divisor) {
                 int subResult = subDividend / divisor;
                 int multiply = subResult * divisor;
                 buildQuotient.append(subResult);
-                viewResult.add(String.format("%" + (i +2) + "s", "_" + subDividend));
+                viewResult.add(String.format("%" + (i + 2) + "s", "_" + subDividend));
                 viewResult.add(String.format("%" + (i + 2) + "s", multiply));
                 viewResult.add(String.format("%" + (i + 2) + "s", stringWithSomeRepeatSymbol("-", String.valueOf(multiply).length())));
                 subDividendToString = new StringBuilder(String.valueOf(subDividend % divisor));
 
-            } else{
+            } else {
                 buildQuotient.append(0);
             }
         }
-        viewResult.add(String.format("%" + (digitsDividend.length + 1) + "s",subDividendToString.toString()));
+        viewResult.add(String.format("%" + (digitsDividend.length + 1) + "s", subDividendToString.toString()));
     }
-    private String stringWithSomeRepeatSymbol(String symbol, int count){
+
+    private String stringWithSomeRepeatSymbol(String symbol, int count) {
         StringBuilder string = new StringBuilder();
         for (int i = 0; i < count; i++) {
             string.append(symbol);
         }
         return string.toString();
     }
-
 
 
 }
