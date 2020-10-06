@@ -11,10 +11,13 @@ public class Division {
     private int quotient;
     private List<String> linesViewResult;
 
-    public String makeDivision(int dividend, int divisor) {
+    public String divineTwoPositiveIntegers(int dividend, int divisor) {
 
         if(divisor == 0){
             throw new IllegalArgumentException("Divisor cannot be 0, division by zero");
+        }
+        if(dividend < 0 || divisor < 0){
+            throw new IllegalArgumentException("Dividend and divisor must be positive numbers");
         }
         if(dividend < divisor){
             return dividend + " / " + divisor + " = 0";
@@ -64,11 +67,15 @@ public class Division {
     }
 
     private void divine() {
-        StringBuilder subDividendToString = new StringBuilder();
+        StringBuilder subDividendString = new StringBuilder();
         int subDividend;
         for (int i = 0; i < digitsDividend.length; i++) {
-            subDividendToString.append(digitsDividend[i]);
-            subDividend = Integer.parseInt(subDividendToString.toString());
+            if(subDividendString.toString().equals("0")){
+                subDividendString = new StringBuilder(digitsDividend[i]);
+            }else {
+                subDividendString.append(digitsDividend[i]);
+            }
+            subDividend = Integer.parseInt(subDividendString.toString());
             if (subDividend >= divisor) {
                 int subResult = subDividend / divisor;
                 int multiply = subResult * divisor;
@@ -76,12 +83,12 @@ public class Division {
                 linesViewResult.add(String.format("%" + (i + 2) + "s", "_" + subDividend));
                 linesViewResult.add(String.format("%" + (i + 2) + "s", multiply));
                 linesViewResult.add(String.format("%" + (i + 2) + "s", stringWithSomeRepeatSymbol("-", String.valueOf(multiply).length())));
-                subDividendToString = new StringBuilder(String.valueOf(subDividend % divisor));
+                subDividendString = new StringBuilder(String.valueOf(subDividend % divisor));
             } else {
                 buildQuotient.append(0);
             }
         }
-        linesViewResult.add(String.format("%" + (digitsDividend.length + 1) + "s", subDividendToString.toString()));
+        linesViewResult.add(String.format("%" + (digitsDividend.length + 1) + "s", subDividendString.toString()));
         quotient = Integer.parseInt(buildQuotient.toString());
     }
 
