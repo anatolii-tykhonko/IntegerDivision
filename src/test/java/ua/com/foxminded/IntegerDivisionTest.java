@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DivisionTest {
-    Division test = new Division();
+class IntegerDivisionTest {
+    IntegerDivision test = new IntegerDivision();
 
 
     @Test

@@ -3,7 +3,7 @@ package ua.com.foxminded;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Division {
+public class IntegerDivision {
     private String dividend;
     private String[] digitsDividend;
     private int divisor;
