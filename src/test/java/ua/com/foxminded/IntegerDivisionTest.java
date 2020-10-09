@@ -60,4 +60,44 @@ class IntegerDivisionTest {
 
         assertEquals(expected, result);
     }
+
+    @Test
+    void returnResultWhenDividendContainsThreeZero(){
+        int inputDividend = 10002;
+        int inputDivisor = 3;
+        String expected =   "_10002|3" + System.lineSeparator() +
+                            "  9   |----" + System.lineSeparator() +
+                            "  -   |3334" + System.lineSeparator() +
+                            " _10" + System.lineSeparator() +
+                            "   9" + System.lineSeparator() +
+                            "   -" + System.lineSeparator() +
+                            "  _10" + System.lineSeparator() +
+                            "    9" + System.lineSeparator() +
+                            "    -" + System.lineSeparator() +
+                            "   _12" + System.lineSeparator() +
+                            "    12" + System.lineSeparator() +
+                            "    --" + System.lineSeparator() +
+                            "     0" + System.lineSeparator();
+
+        String result = test.divineTwoPositiveIntegers(inputDividend, inputDivisor);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void returnResultWhenQuotientContainsTwoZero(){
+        int inputDividend = 6030;
+        int inputDivisor = 6;
+        String expected =   "_6030|6" + System.lineSeparator() +
+                            " 6   |----" + System.lineSeparator() +
+                            " -   |1005" + System.lineSeparator() +
+                            "  _30" + System.lineSeparator() +
+                            "   30" + System.lineSeparator() +
+                            "   --" + System.lineSeparator() +
+                            "    0" + System.lineSeparator();
+
+        String result = test.divineTwoPositiveIntegers(inputDividend, inputDivisor);
+
+        assertEquals(expected, result);
+    }
 }
