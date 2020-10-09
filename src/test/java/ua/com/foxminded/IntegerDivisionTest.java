@@ -7,38 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class IntegerDivisionTest {
     IntegerDivision test = new IntegerDivision();
 
-
     @Test
     void throwIllegalArgumentExceptionWhenDivisorZero() {
         int inputDividend = 12345;
         int inputDivisor = 0;
-
-        assertThrows(IllegalArgumentException.class,
-                () -> test.divineTwoPositiveIntegers(inputDividend, inputDivisor));
-    }
-
-    @Test
-    void throwIllegalArgumentExceptionWhenDividendNegativeDivisorPositive(){
-        int inputDividend = -123;
-        int inputDivisor = 12;
-
-        assertThrows(IllegalArgumentException.class,
-                () -> test.divineTwoPositiveIntegers(inputDividend, inputDivisor));
-    }
-
-    @Test
-    void throwIllegalArgumentExceptionWhenDividendPositiveDivisorNegative(){
-        int inputDividend = 25;
-        int inputDivisor = -2;
-
-        assertThrows(IllegalArgumentException.class,
-                () -> test.divineTwoPositiveIntegers(inputDividend, inputDivisor));
-    }
-
-    @Test
-    void throwIllegalArgumentExceptionWhenDividendNegativeDivisorNegative(){
-        int inputDividend = -9;
-        int inputDivisor = -3;
 
         assertThrows(IllegalArgumentException.class,
                 () -> test.divineTwoPositiveIntegers(inputDividend, inputDivisor));
@@ -68,6 +40,7 @@ class IntegerDivisionTest {
 
         assertEquals(expected, result);
     }
+
     @Test
     void returnResultWhenDivisorBiggerThatFirstDigitOfDividend() {
         int inputDividend = 12345;
@@ -87,5 +60,4 @@ class IntegerDivisionTest {
 
         assertEquals(expected, result);
     }
-
 }
