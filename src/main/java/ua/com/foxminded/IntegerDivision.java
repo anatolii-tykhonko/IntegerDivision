@@ -88,7 +88,7 @@ public class IntegerDivision {
         buildViewResult = new StringBuilder();
 
         for(String result : linesViewResult){
-            buildViewResult.append(result).append("\n");
+            buildViewResult.append(result).append(System.lineSeparator());
         }
         return buildViewResult.toString();
     }
