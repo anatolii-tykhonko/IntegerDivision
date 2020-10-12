@@ -13,16 +13,20 @@ class IntegerDivisionTest {
         int inputDivisor = 0;
 
         assertThrows(IllegalArgumentException.class,
-                () -> test.divineTwoPositiveIntegers(inputDividend, inputDivisor));
+                () -> test.divideTwoPositiveIntegers(inputDividend, inputDivisor));
     }
 
     @Test
-    void returnOneLineStringWhereDividendDivisorEqualsZeroWhenDivisorBiggerDividend() {
+    void returnResultWhenDividendEqualsZero() {
         int inputDividend = 0;
-        int inputDivisor = 2;
-        String expected = "0 / 2 = 0";
+        int inputDivisor = 99;
+        String expected = String
+                .format("_0|99%n" +
+                        " 0|--%n" +
+                        " -|0%n" +
+                        " 0%n");
 
-        String result = test.divineTwoPositiveIntegers(inputDividend, inputDivisor);
+        String result = test.divideTwoPositiveIntegers(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
@@ -36,7 +40,7 @@ class IntegerDivisionTest {
                             " -|1" + System.lineSeparator() +
                             " 0" + System.lineSeparator();
 
-        String result = test.divineTwoPositiveIntegers(inputDividend, inputDivisor);
+        String result = test.divideTwoPositiveIntegers(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
@@ -56,7 +60,7 @@ class IntegerDivisionTest {
                             "   ---" + System.lineSeparator() +
                             "     8" + System.lineSeparator();
 
-        String result = test.divineTwoPositiveIntegers(inputDividend, inputDivisor);
+        String result = test.divideTwoPositiveIntegers(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
@@ -79,7 +83,7 @@ class IntegerDivisionTest {
                             "    --" + System.lineSeparator() +
                             "     0" + System.lineSeparator();
 
-        String result = test.divineTwoPositiveIntegers(inputDividend, inputDivisor);
+        String result = test.divideTwoPositiveIntegers(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
@@ -96,7 +100,7 @@ class IntegerDivisionTest {
                             "   --" + System.lineSeparator() +
                             "    0" + System.lineSeparator();
 
-        String result = test.divineTwoPositiveIntegers(inputDividend, inputDivisor);
+        String result = test.divideTwoPositiveIntegers(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }

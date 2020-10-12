@@ -11,15 +11,15 @@ public class IntegerDivision {
     private int quotient;
     private List<String> linesViewResult;
 
-    public String divineTwoPositiveIntegers(int dividend, int divisor) {
+    public String divideTwoPositiveIntegers(int dividend, int divisor) {
         dividend = Math.abs(dividend);
         divisor = Math.abs(divisor);
         if(validateInputData(dividend, divisor)){
             initializeInstanceVariable(dividend, divisor);
-            divine();
+            divide();
             return modifyResultToString();
         } else {
-            return dividend + " / " + divisor + " = 0";
+            return resultToStringWhenDividendLessThanDivisor(dividend, divisor);
         }
     }
 
@@ -39,7 +39,7 @@ public class IntegerDivision {
         linesViewResult = new ArrayList<>();
     }
 
-    private void divine() {
+    private void divide() {
         StringBuilder subDividendString = new StringBuilder();
         int subDividend;
         for (int i = 0; i < digitsDividend.length; i++) {
@@ -53,9 +53,10 @@ public class IntegerDivision {
                 int subResult = subDividend / divisor;
                 int multiply = subResult * divisor;
                 buildQuotient.append(subResult);
-                linesViewResult.add(String.format("%" + (i + 2) + "s", "_" + subDividend));
-                linesViewResult.add(String.format("%" + (i + 2) + "s", multiply));
-                linesViewResult.add(String.format("%" + (i + 2) + "s", stringWithSomeRepeatSymbol("-", String.valueOf(multiply).length())));
+                String formatLine = "%" + (i + 2) + "s";
+                linesViewResult.add(String.format(formatLine, "_" + subDividend));
+                linesViewResult.add(String.format(formatLine, multiply));
+                linesViewResult.add(String.format(formatLine, stringWithSomeRepeatSymbol("-", String.valueOf(multiply).length())));
                 subDividendString = new StringBuilder(String.valueOf(subDividend % divisor));
             } else {
                 buildQuotient.append(0);
@@ -74,7 +75,7 @@ public class IntegerDivision {
         StringBuilder buildViewResult = new StringBuilder(secondLineViewResult);
         buildViewResult.append(stringWithSomeRepeatSymbol(" ", this.dividend.length() - secondLineViewResult.length() + 1)).
                 append("|").
-                append(stringWithSomeRepeatSymbol("-", String.valueOf(quotient).length()));
+                append(stringWithSomeRepeatSymbol("-", Math.max(String.valueOf(divisor).length(), String.valueOf(quotient).length())));
         linesViewResult.add(1, buildViewResult.toString());
         linesViewResult.remove(linesViewResult.get(2));
 
@@ -91,6 +92,23 @@ public class IntegerDivision {
             buildViewResult.append(result).append(System.lineSeparator());
         }
         return buildViewResult.toString();
+    }
+
+    private String resultToStringWhenDividendLessThanDivisor(int dividend, int divisor) {
+        StringBuilder result = new StringBuilder();
+        String format = "%" + (String.valueOf(dividend).length() + 1) + "s";
+        result.append("_" + dividend + "|" + divisor)
+                .append(System.lineSeparator());
+        result.append(String.format(format, "0"))
+                .append("|")
+                .append(stringWithSomeRepeatSymbol("-", String.valueOf(divisor).length()))
+                .append(System.lineSeparator());
+        result.append(String.format(format, "-"))
+                .append("|0")
+                .append(System.lineSeparator());
+        result.append(String.format(format, dividend))
+                .append(System.lineSeparator());
+        return result.toString();
     }
 
     private String stringWithSomeRepeatSymbol(String symbol, int count) {
