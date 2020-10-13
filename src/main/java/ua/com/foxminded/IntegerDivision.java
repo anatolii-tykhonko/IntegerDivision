@@ -7,34 +7,34 @@ public class IntegerDivision {
     private String dividend;
     private String[] digitsDividend;
     private int divisor;
-    private StringBuilder buildQuotient;
+    private StringBuilder quotientToString;
     private int quotient;
     private List<String> linesViewResult;
 
-    public String divideTwoPositiveIntegers(int dividend, int divisor) {
-        dividend = Math.abs(dividend);
-        divisor = Math.abs(divisor);
-        if(validateInputData(dividend, divisor)){
-            initializeInstanceVariable(dividend, divisor);
+    public String divideTwoPositiveIntegers(int inputDividend, int inputDivisor) {
+        if(validateInputData(inputDividend, inputDivisor)){
             divide();
             return modifyResultToString();
         } else {
-            return resultToStringWhenDividendLessThanDivisor(dividend, divisor);
+            return resultToStringWhenDividendLessThanDivisor();
         }
     }
 
-    private boolean validateInputData(int dividend, int divisor) {
-        if(divisor == 0){
+    private boolean validateInputData(int inputDividend, int inputDivisor) {
+        if(inputDivisor == 0){
             throw new IllegalArgumentException("Divisor cannot be 0, division by zero");
         }
-        return dividend >= divisor;
+        int positiveDividend = Math.abs(inputDividend);
+        int positiveDivisor = Math.abs(inputDivisor);
+        initializeInstanceVariable(positiveDividend, positiveDivisor);
+        return positiveDividend >= positiveDivisor;
     }
 
-    private void initializeInstanceVariable(int dividend, int divisor) {
-        this.divisor = Math.abs(divisor);
-        this.dividend = String.valueOf(Math.abs(dividend));
+    private void initializeInstanceVariable(int positiveDividend, int positiveDivisor) {
+        divisor = Math.abs(positiveDivisor);
+        dividend = String.valueOf(Math.abs(positiveDividend));
         digitsDividend = this.dividend.split("");
-        buildQuotient = new StringBuilder();
+        quotientToString = new StringBuilder();
         quotient = 0;
         linesViewResult = new ArrayList<>();
     }
@@ -52,18 +52,18 @@ public class IntegerDivision {
             if (subDividend >= divisor) {
                 int subResult = subDividend / divisor;
                 int multiply = subResult * divisor;
-                buildQuotient.append(subResult);
+                quotientToString.append(subResult);
                 String formatLine = "%" + (i + 2) + "s";
                 linesViewResult.add(String.format(formatLine, "_" + subDividend));
                 linesViewResult.add(String.format(formatLine, multiply));
                 linesViewResult.add(String.format(formatLine, stringWithSomeRepeatSymbol("-", String.valueOf(multiply).length())));
                 subDividendString = new StringBuilder(String.valueOf(subDividend % divisor));
             } else {
-                buildQuotient.append(0);
+                quotientToString.append(0);
             }
         }
         linesViewResult.add(String.format("%" + (digitsDividend.length + 1) + "s", subDividendString.toString()));
-        quotient = Integer.parseInt(buildQuotient.toString());
+        quotient = Integer.parseInt(quotientToString.toString());
     }
 
     private String modifyResultToString() {
@@ -94,9 +94,9 @@ public class IntegerDivision {
         return buildViewResult.toString();
     }
 
-    private String resultToStringWhenDividendLessThanDivisor(int dividend, int divisor) {
+    private String resultToStringWhenDividendLessThanDivisor() {
         StringBuilder result = new StringBuilder();
-        String format = "%" + (String.valueOf(dividend).length() + 1) + "s";
+        String format = "%" + (dividend.length() + 1) + "s";
         result.append("_" + dividend + "|" + divisor)
                 .append(System.lineSeparator());
         result.append(String.format(format, "0"))
