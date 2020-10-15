@@ -8,7 +8,7 @@ class IntegerDivisionTest {
     IntegerDivision test = new IntegerDivision();
 
     @Test
-    void throwIllegalArgumentExceptionWhenDivisorZero() {
+    void divideTwoPosIntegersThrowIllegalArgumentExceptionWhenDivisorZero() {
         int inputDividend = 12345;
         int inputDivisor = 0;
 
@@ -17,7 +17,7 @@ class IntegerDivisionTest {
     }
 
     @Test
-    void returnResultWhenDividendEqualsZero() {
+    void divideTwoPosIntegersShouldFormatWhenDividendIsZero() {
         int inputDividend = 0;
         int inputDivisor = 99;
         String expected = String
@@ -32,7 +32,7 @@ class IntegerDivisionTest {
     }
 
     @Test
-    void returnOnlyFourLinesWhenDividendEqualsDivisor(){
+    void divideTwoPosIntegersReturnOnlyFourLinesWhenDividendEqualsDivisor(){
         int inputDividend = 9;
         int inputDivisor = 9;
         String expected = String
@@ -47,7 +47,7 @@ class IntegerDivisionTest {
     }
 
     @Test
-    void returnResultWhenDivisorBiggerThatFirstDigitOfDividend() {
+    void divideTwoPosIntegersShouldFormatWhenDivisorBiggerThatFirstDigitOfDividend() {
         int inputDividend = 12345;
         int inputDivisor = 13;
         String expected = String
@@ -68,7 +68,7 @@ class IntegerDivisionTest {
     }
 
     @Test
-    void returnResultWhenDividendContainsThreeZero(){
+    void divideTwoPosIntegersShouldFormatWhenDividendContainsThreeZero(){
         int inputDividend = 10002;
         int inputDivisor = 3;
         String expected =String
@@ -92,7 +92,7 @@ class IntegerDivisionTest {
     }
 
     @Test
-    void returnResultWhenQuotientContainsTwoZero(){
+    void divideTwoPosIntegersShouldFormatWhenQuotientContainsTwoZero(){
         int inputDividend = 6030;
         int inputDivisor = 6;
         String expected = String
