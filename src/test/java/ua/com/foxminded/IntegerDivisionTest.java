@@ -13,7 +13,7 @@ class IntegerDivisionTest {
         int inputDivisor = 0;
 
         assertThrows(IllegalArgumentException.class,
-                () -> test.divideTwoPositiveIntegers(inputDividend, inputDivisor));
+                () -> test.longDivideTwoPositiveInteger(inputDividend, inputDivisor));
     }
 
     @Test
@@ -26,7 +26,7 @@ class IntegerDivisionTest {
                         " -|0%n" +
                         " 0%n");
 
-        String result = test.divideTwoPositiveIntegers(inputDividend, inputDivisor);
+        String result = test.longDivideTwoPositiveInteger(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
@@ -41,7 +41,7 @@ class IntegerDivisionTest {
                         " -|1%n" +
                         " 0%n");
 
-        String result = test.divideTwoPositiveIntegers(inputDividend, inputDivisor);
+        String result = test.longDivideTwoPositiveInteger(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
@@ -62,7 +62,7 @@ class IntegerDivisionTest {
                         "   ---%n" +
                         "     8%n");
 
-        String result = test.divideTwoPositiveIntegers(inputDividend, inputDivisor);
+        String result = test.longDivideTwoPositiveInteger(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
@@ -86,7 +86,7 @@ class IntegerDivisionTest {
                         "    --%n" +
                         "     0%n");
 
-        String result = test.divideTwoPositiveIntegers(inputDividend, inputDivisor);
+        String result = test.longDivideTwoPositiveInteger(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
@@ -104,7 +104,7 @@ class IntegerDivisionTest {
                         "   --%n" +
                         "    0%n");
 
-        String result = test.divideTwoPositiveIntegers(inputDividend, inputDivisor);
+        String result = test.longDivideTwoPositiveInteger(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
