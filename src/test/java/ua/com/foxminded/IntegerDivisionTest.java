@@ -8,16 +8,16 @@ class IntegerDivisionTest {
     IntegerDivision test = new IntegerDivision();
 
     @Test
-    void divideTwoPosIntegersThrowIllegalArgumentExceptionWhenDivisorZero() {
+    void longDivideThrowIllegalArgumentExceptionWhenDivisorZero() {
         int inputDividend = 12345;
         int inputDivisor = 0;
 
         assertThrows(IllegalArgumentException.class,
-                () -> test.longDivideTwoPositiveInteger(inputDividend, inputDivisor));
+                () -> test.longDivide(inputDividend, inputDivisor));
     }
 
     @Test
-    void divideTwoPosIntegersShouldFormatWhenDividendIsZero() {
+    void longDivideShouldFormatWhenDividendIsZero() {
         int inputDividend = 0;
         int inputDivisor = 99;
         String expected = String
@@ -26,13 +26,28 @@ class IntegerDivisionTest {
                         " -|0%n" +
                         " 0%n");
 
-        String result = test.longDivideTwoPositiveInteger(inputDividend, inputDivisor);
+        String result = test.longDivide(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
 
     @Test
-    void divideTwoPosIntegersReturnOnlyFourLinesWhenDividendEqualsDivisor(){
+    void longDivideShouldFormatWhenDividendNegativeNumber() {
+        int inputDividend = -12;
+        int inputDivisor = 4;
+        String expected = String
+                .format("_12|4%n" +
+                        " 12|-%n" +
+                        " --|3%n" +
+                        "  0%n");
+
+        String result = test.longDivide(inputDividend, inputDivisor);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void longDivideReturnOnlyFourLinesWhenDividendEqualsDivisor(){
         int inputDividend = 9;
         int inputDivisor = 9;
         String expected = String
@@ -41,13 +56,13 @@ class IntegerDivisionTest {
                         " -|1%n" +
                         " 0%n");
 
-        String result = test.longDivideTwoPositiveInteger(inputDividend, inputDivisor);
+        String result = test.longDivide(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
 
     @Test
-    void divideTwoPosIntegersShouldFormatWhenDivisorBiggerThatFirstDigitOfDividend() {
+    void longDivideShouldFormatWhenDivisorBiggerThatFirstDigitOfDividend() {
         int inputDividend = 12345;
         int inputDivisor = 13;
         String expected = String
@@ -62,13 +77,13 @@ class IntegerDivisionTest {
                         "   ---%n" +
                         "     8%n");
 
-        String result = test.longDivideTwoPositiveInteger(inputDividend, inputDivisor);
+        String result = test.longDivide(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
 
     @Test
-    void divideTwoPosIntegersShouldFormatWhenDividendContainsThreeZero(){
+    void longDivideShouldFormatWhenDividendContainsThreeZero(){
         int inputDividend = 10002;
         int inputDivisor = 3;
         String expected =String
@@ -86,13 +101,13 @@ class IntegerDivisionTest {
                         "    --%n" +
                         "     0%n");
 
-        String result = test.longDivideTwoPositiveInteger(inputDividend, inputDivisor);
+        String result = test.longDivide(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
 
     @Test
-    void divideTwoPosIntegersShouldFormatWhenQuotientContainsTwoZero(){
+    void longDivideShouldFormatWhenQuotientContainsTwoZero(){
         int inputDividend = 6030;
         int inputDivisor = 6;
         String expected = String
@@ -104,7 +119,7 @@ class IntegerDivisionTest {
                         "   --%n" +
                         "    0%n");
 
-        String result = test.longDivideTwoPositiveInteger(inputDividend, inputDivisor);
+        String result = test.longDivide(inputDividend, inputDivisor);
 
         assertEquals(expected, result);
     }
